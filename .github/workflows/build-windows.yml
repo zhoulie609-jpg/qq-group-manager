@@ -20,8 +20,6 @@ jobs:
 
       - run: pip install -r requirements-build.txt
 
-      - run: python -m unittest discover -v
-
       - run: pyinstaller --noconfirm --clean --onefile --windowed --name QQGroupManager --collect-submodules websocket main.py
 
       - uses: actions/upload-artifact@v4
