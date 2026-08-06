@@ -8,15 +8,23 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: QQGroupManager-GitHub-Upload
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
       - run: pip install -r requirements-build.txt
+
       - run: python -m unittest discover -v
+
       - run: pyinstaller --noconfirm --clean --onefile --windowed --name QQGroupManager --collect-submodules websocket main.py
+
       - uses: actions/upload-artifact@v4
         with:
           name: QQGroupManager-Windows
-          path: dist/QQGroupManager.exe
+          path: QQGroupManager-GitHub-Upload/dist/QQGroupManager.exe
